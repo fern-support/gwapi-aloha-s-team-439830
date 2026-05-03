@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://schema.buildwithfern.dev/docs-yml.json
-
 instances:
   - url: usdt-payments.docs.buildwithfern.com
     custom-domain: docs.gwapialoha.co
@@ -21,13 +19,15 @@ layout:
 navigation:
   - api: WEB API
     flattened: true
+  - page: ''
+    path: ./docs/pages/deposit-webhook-specification-merchant-callback.mdx
 colors:
   accent-primary:
-    dark: "#008700"
-    light: "#008700"
+    dark: '#008700'
+    light: '#008700'
   background:
-    dark: "#111113"
-    light: "#FFFFFF"
+    dark: '#111113'
+    light: '#FFFFFF'
 theme:
   page-actions: toolbar
   footer-nav: minimal

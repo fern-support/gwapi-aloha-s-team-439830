@@ -1,0 +1,60 @@
+---
+title: Deposit Webhook Specification (Merchant Callback)
+slug: deposit-webhook-specification-merchant-callback
+---
+
+**1) Preconditions**
+
+\- ระบบจะส่ง webhook เฉพาะ merchant ที่กำหนด `webhookUrl`
+
+\- Webhook สำหรับ deposit **ไม่มี** `tokensignature` ใน payload
+
+**2) Events และจังหวะการส่ง**
+
+`deposit.received`
+
+\- Trigger: watcher ตรวจพบ on-chain tx ที่ match กับ `DepositOrder` และมีการเปลี่ยนสถานะจาก `WAITING` เป็น `RECEIVED`
+
+\- Delivery: ส่งทันทีจาก watcher (ไม่ผ่าน retry queue)
+
+`deposit.confirmed`
+
+\- Trigger: watcher ตรวจสอบ confirmations ครบตามที่ระบบกำหนด และเปลี่ยน `DepositOrder.status` เป็น `CONFIRMED`
+
+\- Delivery: enqueue ไปยังตาราง `WebhookDelivery` และ retry แบบ exponential backoff จนสำเร็จหรือครบ attempts
+
+**3) Payload Schema**
+
+> \{
+>
+> "event": "deposit.received | deposit.confirmed",
+>
+> "data": \{
+>
+> "merchantId": "uuid",
+>
+> "orderId": "merchant-order-id",
+>
+> "chain": "TRON|ETH|BSC",
+>
+> "toAddress": "deposit-address",
+>
+> "amount": "string(decimal)",
+>
+> "status": "WAITING|RECEIVED|CONFIRMED|EXPIRED",
+>
+> "confirmedAt": "ISO-8601 | null",
+>
+> "txHashes": \["txhash", "..."]
+>
+> }
+>
+> }
+
+**4) Field Semantics**
+
+\- `status` เป็น status ล่าสุดของ `DepositOrder` ณ เวลาที่ส่ง webhook
+
+\- `confirmedAt` จะเป็น `null` จนกว่ารายการจะถูกยืนยันสำเร็จ `CONFIRMED`)
+
+\- `txHashes` เป็นรายการ tx hash ที่ถูกผูกกับ order (เรียงตามเวลา block timestamp)
