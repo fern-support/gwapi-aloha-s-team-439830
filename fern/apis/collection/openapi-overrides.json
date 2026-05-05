@@ -1,0 +1,44 @@
+{
+  "paths": {
+    "/[AGENT_ID]/balance": {
+      "get": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    },
+    "/[AGENT_ID]/customers/add": {
+      "post": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    },
+    "/[AGENT_ID]/customers/0809991234/withdraw": {
+      "post": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    },
+    "/[AGENT_ID]/customers/0809991234/address/tron": {
+      "get": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    },
+    "/[AGENT_ID]/customers/0809991234/withdraw/address": {
+      "patch": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    },
+    "/[AGENT_ID]/customers/0809991234/transactions/deposit": {
+      "get": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    },
+    "/[AGENT_ID]/customers/0809991234/transactions/withdraw": {
+      "get": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    },
+    "/[AGENT_ID]/customers/0809991234/withdraw/address/disactivate": {
+      "patch": {
+        "description": "### โปรดดูเอกสารอัพเดทที่ : https://docs.gwapialoha.co/get-started/introduction/"
+      }
+    }
+  }
+}
